@@ -1,32 +1,27 @@
 # AutoCal
 
-**AI-powered calendar events from natural language** — A reliability-improved fork of [LLMCal](https://github.com/cafferychen777/LLMCal) for [PopClip](https://popclip.app) on macOS.
+**AI-powered calendar events from natural language** — A fork of [LLMCal](https://github.com/cafferychen777/LLMCal) for [PopClip](https://popclip.app) on macOS.
 
-**Purpose:** This extension is built for **multi-timezone support**, especially **adding flights to your calendar** from airline emails and reservations. Select flight details (e.g. *"Flight KL601 AMS 12:30 to LAX 15:45 Feb 20"*), and AutoCal creates the event with times correctly converted to your home timezone. Zoom integration has been **removed** — this fork focuses solely on calendar events.
-
-Select text like *"Team meeting tomorrow at 2pm"* or *"Flight AMS 12:30 to LAX 15:45"*, click the calendar icon, and the event is added to your calendar.
+Select text like *"Team meeting tomorrow at 2pm"* or *"Flight AMS 12:30 to LAX 15:45"*, click the calendar icon, and the event is added to your calendar. Especially useful for **adding flights from airline emails and reservations** — times are converted to your home timezone automatically.
 
 ---
 
-## Fork notice
+## About this fork
 
-AutoCal is a **fork** of [LLMCal](https://github.com/cafferychen777/LLMCal) by cafferychen777. This fork focuses on **multi-timezone support** and **improved reliability** — fixing common failure modes, better parsing, clearer errors, and a cleaner codebase. Zoom integration has been removed. All credit for the original idea and structure goes to the LLMCal project.
+AutoCal is based on [LLMCal](https://github.com/cafferychen777/LLMCal) by cafferychen777. Changes include multi-timezone support for flights, removal of Zoom integration (calendar-only), and reliability improvements. Credit for the original extension goes to the LLMCal project.
 
 ---
 
-## What AutoCal improves (vs. original LLMCal)
+## Features
 
-| Issue | Fix |
-|-------|-----|
-| API key rejected despite being valid | Accepts any `sk-ant-` key; trims spaces; no blocking pre-flight test |
-| "Unable to create a title" / "Event title is missing" | Fallbacks: description → "Calendar Event" |
-| "Start time is missing" | Fallbacks: today 9:00 AM or start+1 hour |
-| "Can't get calendar Personal/Work" | Maps to your actual calendars; dedicated **Preferred Calendar** setting |
-| Flight times in wrong timezone | **Multi-timezone support:** AI returns IANA timezones; converts departure/arrival times to your home TZ |
-| Vague text wastes API calls | Ambiguity pre-filter warns before calling API |
-| Zoom bloat | **Zoom removed** — extension focused solely on calendar events (no Zoom credentials needed) |
-| Chinese in lib error messages | Removed; English only in code |
-| Default model | **Claude Sonnet 4.0** (balanced quality/cost) |
+| Feature | Description |
+|---------|-------------|
+| Multi-timezone flights | Converts departure/arrival times to your home TZ; adds local-time note to event |
+| Preferred Calendar | Dedicated setting for your calendar name |
+| Calendar mapping | Maps "Personal"/"Work" to your actual calendar names |
+| Title/time fallbacks | Uses defaults when parsing misses a field |
+| Ambiguity check | Warns before API call if text seems too vague |
+| Default model | Claude Sonnet 4.0 |
 
 ---
 
@@ -58,12 +53,6 @@ AutoCal is a **fork** of [LLMCal](https://github.com/cafferychen777/LLMCal) by c
 | **Personal Preferences** | Free-form hints, e.g. "Home timezone Amsterdam", "Default duration 1 hour". |
 
 ---
-
-## Use cases
-
-**Flights from airline emails** — Copy flight details from confirmation emails (e.g. *"Flight KL601 departs Amsterdam 12:30, arrives Los Angeles 15:45 on 20 Feb"*), select the text, and add to calendar. Times are converted to your home timezone, with a local-time reference note in the event description.
-
-**Meetings and events** — *"Team meeting tomorrow at 2pm"*, *"Doctor appointment Thursday 10am"* — works as expected.
 
 ## Quick test
 
